@@ -22,9 +22,10 @@ with open('data/movies.json') as f:
 movies_in_db = []
 format = '%Y-%m-%d'
 
+#creating new entries in movies table
 #goes through each dictionary item from json file
 for movie in movie_data:
-    #passes arguments to json file by dict key
+    #passes arguments to create movie from json file by dict key
     #title, overview, release_date formated as datetime obj, poster_path
     db_movie = crud.create_movie(movie['title'], 
                                  movie['overview'], 
@@ -34,3 +35,18 @@ for movie in movie_data:
     #add each db movie into a list
     movies_in_db.append(db_movie)
 
+#creating fake users for the user table
+for n in range(10):
+    email = f'user{n}@test.com'  # Voila! A unique email!
+    password = 'test'
+
+    #create user entry, return the user in var user
+    user = crud.create_user(email, password)
+
+    for i in range(10):
+        #create rating from random score 1-5
+        #pass user created earlier to rating
+        #choose and pass random movie from list
+        crud.create_rating(randint(1,5), 
+                           user, 
+                           choice(movies_in_db))
