@@ -23,12 +23,15 @@ class User(db.Model):
 
     __tablename__ = 'users'
 
-    user_id = db.Column(db.Integer, primary_key = True,
+    user_id = db.Column(db.Integer, 
+                        primary_key = True,
                         autoincrement=True,)
-
-    email = db.Column(db.String(50), nullable=False, unique = True,)
-
-    password = db.Column(db.String(50), nullable=False, unique = False,)
+    email = db.Column(db.String(50), 
+                      nullable=False, 
+                      unique = True,)
+    password = db.Column(db.String(50),
+                         nullable=False, 
+                         unique = False,)
 
     #creates instance method to display info about the user
     def __repr__(self):
@@ -36,18 +39,18 @@ class User(db.Model):
 
 
 
-class Ratings(db.Model):
+class Rating(db.Model):
     __tablename__ = 'ratings'
 
-    rating_id = db.Column(db.Integer, primary_key = True,
-                        autoincrement=True,)
-
+    rating_id = db.Column(db.Integer, 
+                          primary_key = True,
+                          autoincrement=True,)
     score = db.Column(db.Integer)
+    movie_id = db.Column(db.Integer, db.ForeignKey("movies.movie_id"))  
+    user_id = db.Column(db.Integer, db.ForeignKey("users.user_id"))
 
-    movie_id = db.Column(db.Integer)  
-
-    user_id = db.Column(db.Integer)
-
+    movie = db.relationship("Movie", backref="ratings")
+    user = db.relationship("User", backref="ratings")
     
     def __repr__(self):
         return f'<rating ID={self.rating_id} score={self.score}>'
@@ -56,15 +59,12 @@ class Movie(db.Model):
 
     __tablename__ = 'movies'
 
-    movie_id = db.Column(db.Integer, primary_key = True,
-                        autoincrement=True,)
-
+    movie_id = db.Column(db.Integer, 
+                         primary_key = True,
+                         autoincrement=True,)
     title = db.Column(db.String)
-
     overview = db.Column(db.Text)  
-
     release_date = db.Column(db.DateTime)  
-
     poster_path = db.Column(db.String)
     
     def __repr__(self):
