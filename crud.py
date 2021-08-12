@@ -32,6 +32,11 @@ def create_rating(score, user, movie):
     
     return rating
 
+def get_movies():
+
+    #returns a list of movie records
+    return Movie.query.all()
+
 
 if __name__ == '__main__':
     from server import app
