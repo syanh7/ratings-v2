@@ -1,17 +1,17 @@
 {% extends 'base.html' %}
 
-{% block title %}All Movies{% endblock %}
+{% block title %}All Users{% endblock %}
 
 {% block head %}
 <!-- Insert here what we may need -->
 {% endblock %}
 
 {% block body %}
-  <h1>Movies</h1>
+  <h1>Users</h1>
 
-    {% for movie in movies%}
+    {% for user in users%}
     <ul>
-        <li><a href="/movies/{{movie.movie_id}}">{{movie.title}}</a></li>
+        <li><a href="/users/{{user.user_id}}">{{user.email}}</a></li>
     </ul>
     {% endfor %}
 

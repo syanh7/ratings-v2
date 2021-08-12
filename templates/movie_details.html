@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+
+{% block title %}{{movie.title}}{% endblock %}
+
+{% block head %}
+<!-- Insert here what we may need -->
+{% endblock %}
+
+{% block body %}
+  <h1>{{movie.title}}</h1>
+  <p>{{movie.overview}}</p>
+
+  <img src="{{movie.poster_path}}">
+  <p>{{movie.release_date}}</p>
+
+
+
+
+{% endblock %}

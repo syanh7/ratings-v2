@@ -38,6 +38,26 @@ def get_movies():
     return Movie.query.all()
 
 
+def get_movie_by_id(movie_id):
+    #Query Movie database to grab movie record by ID
+    movie = Movie.query.get(movie_id)
+
+    return movie
+
+
+def get_users():
+
+    #returns a list of user records
+    return User.query.all()
+
+
+def get_user_by_id(user_id):
+    #Query User database to grab movie record by ID
+    user = User.query.get(user_id)
+
+    return user
+
+
 if __name__ == '__main__':
     from server import app
     connect_to_db(app)

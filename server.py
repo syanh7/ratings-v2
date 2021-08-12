@@ -31,10 +31,36 @@ def all_movies():
 
     return render_template('all_movies.html', movies=movies)
 
-@app.route('/movies/<movie_id>')
-def movie_details():
-    """movie details"""
-    pass
+@app.route('/movies/<movie_id>')  #movie_id = end of url path
+def movie_details(movie_id):
+    """Summary of movie details"""
+    
+    #get one movie record from id
+    movie = crud.get_movie_by_id(movie_id)
+
+
+    return render_template('movie_details.html', movie=movie)
+
+
+@app.route('/users')
+def all_users():
+    """list all users"""
+    
+    #get list of user records
+    users = crud.get_users()
+
+    return render_template('all_users.html', users=users)
+
+@app.route('/users/<user_id>')  
+def user_details(user_id):
+    """Summary of user details"""
+    
+    #get one movie record from id
+    user = crud.get_user_by_id(user_id)
+
+
+    return render_template('user_details.html', user=user)
+
 
 
 if __name__ == "__main__":
