@@ -104,6 +104,35 @@ def login_user():
     return redirect('/')
 
 
+@app.route('/ratings/<movie_id>', methods=["POST"])
+def rate_movie(movie_id):
+    #gets movie record from movie_id passed by url
+    
+    score = request.form.get('score')
+
+    #checks if user is logged in, if they are
+    #submits the rating
+    #if not, redirects to homepage
+    if session.get('user_id', 0) != 0:
+        rating = crud.create_rating_from_session(score, 
+                                            movie_id, 
+                                            session['user_id'])
+    else:
+        flash("Please login before submitting ratings")
+
+    return redirect(f'/movies/{movie_id}')
+    
+#app route to ratings with endpoint movie_id
+#pass movie_id into func
+
+    #get the movie record by movie_id
+    #get the user record by user_id, stored in session
+
+    #get score from post request form
+
+    #creating rating using crud method
+
+
 
 if __name__ == "__main__":
     # DebugToolbarExtension(app)

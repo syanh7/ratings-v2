@@ -32,6 +32,14 @@ def create_rating(score, user, movie):
     
     return rating
 
+def create_rating_from_session(score, movie_id, user_id):
+    rating = Rating(score=score, movie_id=movie_id, user_id=user_id)
+
+    db.session.add(rating)
+    db.session.commit()
+    
+    return rating
+
 def get_movies():
 
     #returns a list of movie records

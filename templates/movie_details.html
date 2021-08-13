@@ -14,6 +14,17 @@
   <p>{{movie.release_date}}</p>
 
 
+   <h2>Add a rating to {{movie.title}}</h2>
+  <form action="/ratings/{{movie.movie_id}}" method="POST">
+    <p>
+      score <input type="text" name="score">
+    </p>
+
+      <input type="submit">
+    </p>
+  </form>
+
+
 
 
 {% endblock %}
