@@ -62,6 +62,21 @@ def user_details(user_id):
     return render_template('user_details.html', user=user)
 
 
+@app.route('/users', methods=["POST"])
+def create_user():
+    email = request.form.get('email')
+    password = request.form.get('password')
+
+    user = crud.get_user_by_email(email)
+
+    if user:
+        flash("This account already exists")
+    else:
+        user = crud.create_user(email, password)
+    
+    return redirect('/')
+
+
 
 if __name__ == "__main__":
     # DebugToolbarExtension(app)

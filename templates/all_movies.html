@@ -9,11 +9,11 @@
 {% block body %}
   <h1>Movies</h1>
 
-    {% for movie in movies%}
     <ul>
+    {% for movie in movies%}
         <li><a href="/movies/{{movie.movie_id}}">{{movie.title}}</a></li>
-    </ul>
     {% endfor %}
+    </ul>
 
 
 

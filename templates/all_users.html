@@ -8,13 +8,13 @@
 
 {% block body %}
   <h1>Users</h1>
-
-    {% for user in users%}
     <ul>
-        <li><a href="/users/{{user.user_id}}">{{user.email}}</a></li>
-    </ul>
-    {% endfor %}
+    {% for user in users%}
 
+        <li><a href="/users/{{user.user_id}}">{{user.email}}</a></li>
+
+    {% endfor %}
+    </ul>
 
 
 {% endblock %}

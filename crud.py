@@ -52,8 +52,15 @@ def get_users():
 
 
 def get_user_by_id(user_id):
-    #Query User database to grab movie record by ID
+    #Query User database to grab movie record by PK
     user = User.query.get(user_id)
+
+    return user
+
+def get_user_by_email(email):
+    """Return a user by email"""
+
+    user = User.query.filter(User.email == email).first()
 
     return user
 
