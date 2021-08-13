@@ -73,6 +73,32 @@ def create_user():
         flash("This account already exists")
     else:
         user = crud.create_user(email, password)
+        flash("Account created, please log in")
+    
+    return redirect('/')
+
+
+@app.route('/login', methods=["POST"])
+def login_user():
+    
+    email = request.form.get('email')
+    password = request.form.get('password')
+
+    user = crud.get_user_by_email(email)
+
+    if user:
+        if password == user.password:
+            #add pk to session
+            #flash to user that they logged in
+            session['user_id'] = user.user_id
+            flash("Logged in successfully")
+        else:
+            #password isn't correct
+            #flash password is incorrect
+            flash("Password is incorrect!")
+            
+    else:
+        flash("This account doesn't exist, please create an account")
     
     return redirect('/')
 
